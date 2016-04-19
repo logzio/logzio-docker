@@ -2,7 +2,7 @@
 
 Forward all your Docker logs to [Logz.io](http://logz.io)
 
-![ELK Apps Docker dashboard](https://raw.githubusercontent.com/logzio/logzio-docker/master/Docker-DashBoard.png)
+![ELK Apps Docker dashboard](https://github.com/logzio/logzio-docker/blob/master/Docker-DashBoard.png)
 
 
 ## Usage as a Container
