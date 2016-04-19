@@ -61,6 +61,4 @@ This module wraps
 [docker-stats](https://github.com/pelger/docker-stats) to fetch the logs
 and the stats as a never ending stream of data.
 
-## License
 
-Apache2
