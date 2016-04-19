@@ -63,4 +63,4 @@ and the stats as a never ending stream of data.
 
 ## License
 
-MIT
+Apache2
