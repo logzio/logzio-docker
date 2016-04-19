@@ -1,4 +1,4 @@
-# docker-logzio
+# logzio-docker
 
 Forward all your Docker logs to [Logz.io](http://logz.io)
 
