@@ -1,9 +1,16 @@
-# docker-logzio
+# logzio-docker
 #
-# VERSION 0.2.0
+# VERSION 1.0.0
 
-FROM node:0.12-onbuild
+FROM mhart/alpine-node:5.10.1
 MAINTAINER Ran Ramati <ran@logz.io>
+RUN apk add --no-cache bash
+
+WORKDIR /usr/src/app
+COPY package.json package.json
+RUN npm install --production
+RUN npm cache clean
+COPY index.js /usr/src/app/index.js
 
 ENTRYPOINT ["/usr/src/app/index.js"]
 CMD []
