@@ -11,7 +11,7 @@ The simplest way to forward all your container's log to Logz.io is to
 run this repository as a container, with:
 
 ```sh
-docker run -v /var/run/docker.sock:/var/run/docker.sock logzio/docker-logzio -t <TOKEN> -j -a application=myapp
+docker run -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t <TOKEN> -j -a application=myapp
 ```
 
 You can pass the `--no-stats` flag if you do not want stats to be
@@ -41,7 +41,7 @@ To run the container in such environments add --privileged to the `docker run` c
 
 Example:
 ```sh
-docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock logzio/docker-logzio -t <TOKEN> -j -a application=myapp
+docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t <TOKEN> -j -a application=myapp
 ```
 
 ## How it works
