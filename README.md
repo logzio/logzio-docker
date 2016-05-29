@@ -11,7 +11,7 @@ The simplest way to forward all your container's log to Logz.io is to
 run this repository as a container, with:
 
 ```sh
-docker run -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t <TOKEN> -j -a application=myapp
+docker run -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t ***TOKEN*** -a env=prod
 ```
 
 You can pass the `--no-stats` flag if you do not want stats to be
@@ -23,7 +23,7 @@ You can pass the `--no-logs` flag if you do not want logs to be published to Log
 You can pass the `--no-dockerEvents` flag if you do not want events to be
 published to Logz.io.
 
-The `-i/--statsinterval <STATSINTERVAL>` downsamples the logs sent to Logentries. It collects samples and averages them before sending to Logz.io.
+The `-i/--statsinterval <STATSINTERVAL>` downsamples the logs sent to Logz.io. It collects samples and averages them before sending to Logz.io.
 
 The `-a` allows to add more fields to the log - this can be used to tag spesific application, enviroment etc. 
 
