@@ -11,6 +11,7 @@ COPY package.json package.json
 RUN npm install --production
 RUN npm cache clean
 COPY index.js /usr/src/app/index.js
+COPY ./docker-entrypoint.sh /
 
-ENTRYPOINT ["/usr/src/app/index.js"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD []
