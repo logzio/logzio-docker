@@ -20,12 +20,14 @@ version < 1.5__.
 
 You can pass the `--no-logs` flag if you do not want logs to be published to Logz.io.
 
+You can also pass the `-j` switch if all of the logs generated in the containers are in JSON format
+
 You can pass the `--no-dockerEvents` flag if you do not want events to be
 published to Logz.io.
 
 The `-i/--statsinterval <STATSINTERVAL>` downsamples the logs sent to Logz.io. It collects samples and averages them before sending to Logz.io.
 
-The `-a` allows to add more fields to the log - this can be used to tag spesific application, enviroment etc. 
+The `-a` allows to add more fields to the log - this can be used to tag spesific application, enviroment etc.
 
 You can also filter the containers for which the logs/stats are
 forwarded with:
@@ -41,7 +43,7 @@ To run the container in such environments add --privileged to the `docker run` c
 
 Example:
 ```sh
-docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t <TOKEN> -j -a application=myapp
+docker run --privileged -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t ***TOKEN*** -a env=prod
 ```
 
 ## How it works
@@ -60,5 +62,3 @@ This module wraps
 [docker-loghose](https://github.com/mcollina/docker-loghose) and
 [docker-stats](https://github.com/pelger/docker-stats) to fetch the logs
 and the stats as a never ending stream of data.
-
-

@@ -16,7 +16,7 @@ function start(opts) {
   var type;
   var noRestart = function() {};
 
-  
+
 
   var filter = through.obj(function(obj, enc, cb) {
     addAll(opts.add, obj);
@@ -49,7 +49,7 @@ function start(opts) {
   var loghose;
   var stats;
   var dockerEvents;
-  
+
   opts.events = events;
 
   if (opts.logs !== false && opts.token) {
@@ -71,7 +71,7 @@ function start(opts) {
     throw new Error('Please enable one logging facility out of stats, logs or dockerEvents');
   }
 
-  
+
   return loghose;
 
   function addAll(proto, obj) {
@@ -98,7 +98,7 @@ function cli() {
       'add': 'a'
     },
     default: {
-      json: true,
+      json: false,
       newline: true,
       stats: true,
       logs: true,
@@ -120,7 +120,7 @@ function cli() {
     process.exit(1);
   }
 
-  
+
   if (argv.add && !Array.isArray(argv.add)) {
     argv.add = [argv.add];
   }
