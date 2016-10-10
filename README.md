@@ -27,11 +27,9 @@ published to Logz.io.
 
 The `-i/--statsinterval <STATSINTERVAL>` downsamples the logs sent to Logz.io. It collects samples and averages them before sending to Logz.io.
 
-<<<<<<< HEAD
-The `-a` allows to add more fields to the log - this can be used to tag spesific application, enviroment etc.
-=======
 The `-a` allows to add more fields to the log - this can be used to tag specific application, enviroment etc. 
->>>>>>> origin/master
+
+The `-z` allows to contorol to which zone the logs will be sent to eu for Europe us for USA (set to us be default)
 
 You can also filter the containers for which the logs/stats are
 forwarded with:
