@@ -21,6 +21,7 @@ function start(opts) {
   var filter = through.obj(function(obj, enc, cb) {
     addAll(opts.add, obj);
     var token = opts.token;
+    var zone = opts.zone;
 
     if (obj.line) {
       type = 'docker-logs';
@@ -35,11 +36,21 @@ function start(opts) {
     }
     //console.log(JSON.stringify(obj));
     obj.host = os.hostname() ;
+    if (zone=='eu') {
     var logger = logzioLogger.createLogger({
       token: token,
       protocol: 'https',
-      type: type
+      type: type,
+      host: 'listener-eu.logz.io'
     });
+    }
+    else {
+      var logger = logzioLogger.createLogger({
+        token: token,
+        protocol: 'https',
+        type: type
+      });
+    }
     logger.log(obj);
 
     cb()
@@ -95,7 +106,8 @@ function cli() {
       'newline': 'n',
       'json': 'j',
       'statsinterval': 'i',
-      'add': 'a'
+      'add': 'a',
+      'zone': 'z'
     },
     default: {
       json: false,
@@ -106,13 +118,14 @@ function cli() {
       statsinterval: 30,
       add: [ 'host=' + os.hostname() ],
       token: process.env.LOGZIO_TOKEN,
+      zone: process.env.LOGZIO_ZONE
     }
   });
 
   if (argv.help || !(argv.token)) {
     console.log('Usage: docker-logzio [-t TOKEN][-j] [--no-newline]\n' +
                 '                         [--no-stats] [--no-logs] [--no-dockerEvents]\n' +
-                '                         [-i STATSINTERVAL] [-a KEY=VALUE]\n' +
+                '                         [-i STATSINTERVAL] [-a KEY=VALUE] [-z us|eu]\n' +
                 '                         [--matchByImage REGEXP] [--matchByName REGEXP]\n' +
                 '                         [--skipByImage REGEXP] [--skipByName REGEXP]\n' +
                 '                         [--help]');
