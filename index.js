@@ -35,22 +35,15 @@ function start(opts) {
       type = 'docker-stats';
     }
     //console.log(JSON.stringify(obj));
-    obj.host = os.hostname() ;
-    if (zone=='eu') {
+    obj.host = os.hostname();
+    
     var logger = logzioLogger.createLogger({
       token: token,
       protocol: 'https',
       type: type,
-      host: 'listener-eu.logz.io'
+      host: zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
     });
-    }
-    else {
-      var logger = logzioLogger.createLogger({
-        token: token,
-        protocol: 'https',
-        type: type
-      });
-    }
+    
     logger.log(obj);
 
     cb()
