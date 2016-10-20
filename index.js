@@ -36,14 +36,15 @@ function start(opts) {
     }
     //console.log(JSON.stringify(obj));
     obj.host = os.hostname();
-    
+
     var logger = logzioLogger.createLogger({
       token: token,
       protocol: 'https',
       type: type,
+      bufferSize: 1000,
       host: zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
     });
-    
+
     logger.log(obj);
 
     cb()
