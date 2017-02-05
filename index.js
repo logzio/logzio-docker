@@ -35,7 +35,7 @@ function start(opts) {
 
         var type = 'docker-unknown';
         if (obj.line) {
-            type = 'docker-logs';
+            type = 'docker_logs';
         }
         else if (obj.type) {
             obj.action_type = obj.type;
