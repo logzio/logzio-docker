@@ -1,8 +1,8 @@
 # logzio-docker
 #
-# VERSION 1.0.0
+# VERSION 2.0.0
 
-FROM mhart/alpine-node:5.10.1
+FROM mhart/alpine-node:7.5.0
 MAINTAINER Ran Ramati <ran@logz.io>
 RUN apk add --no-cache bash
 
