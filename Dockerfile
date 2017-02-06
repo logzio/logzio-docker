@@ -8,6 +8,6 @@ RUN apk add --no-cache bash && rm -rf /var/cache/apk/*
 WORKDIR /usr/src/app
 COPY package.json package.json
 RUN npm install --production && npm cache clean
-COPY *.js /usr/src/app/*.js
+COPY *.js /usr/src/app/
 ENTRYPOINT ["/usr/src/app/index.js"]
 CMD []
