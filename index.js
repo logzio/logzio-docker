@@ -7,10 +7,10 @@ var minimist = require('minimist');
 var allContainers = require('docker-allcontainers');
 var statsFactory = require('docker-stats');
 var logFactory = require('docker-loghose');
-var eventsFactory = require('docker-event-log');
 var os = require('os');
 var logzioLogger = require('logzio-nodejs');
 
+var eventsFactory = require('./docker-event-log');
 
 var loggers = {};
 function getOrCreateLogger(type, opts) {

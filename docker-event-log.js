@@ -1,15 +1,7 @@
 /*
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * This file was copied and modified from https://github.com/pelger/docker-event-log
+ * This repository seems to be idle and not maintained since it was released and request for a bug fix and pull request
+ * were not attended.
  */
 
 'use strict';
@@ -36,6 +28,7 @@ var toEmit = function toEmit(data, container) {
         id: container.Id,
         type: data.status,
         image: container.Image,
+        labels: container.Config.Labels,
         name: name,
         host: data.from,
         execute: exec
@@ -64,7 +57,20 @@ module.exports = function dockerEvents(opts) {
         }
     });
 
-    events.pipe(through.obj(function(chunk, enc, cb) {
+    var splitEvents = events.pipe(through.obj(function (chunk, enc, cb) {
+        var _this = this;
+        // the initial set of events arrives as one chunk
+        var events = chunk.toString().split('\n');
+        for (var i in events) {
+            var event = events[i];
+            if (event) {
+               _this.push(event);
+            }
+        }
+        cb()
+    }));
+
+    splitEvents.pipe(through.obj(function(chunk, enc, cb) {
         var _this = this;
         var data = JSON.parse(chunk);
         var container = docker.getContainer(data.id);
