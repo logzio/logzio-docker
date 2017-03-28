@@ -16,9 +16,9 @@ var loggers = {};
 function getOrCreateLogger(type, opts) {
     var logger = loggers[type];
     if (!logger) {
-        config = {
+        var config = {
             token: opts.token,
-            protocol: opts.secure ? 'https' : 'http'
+            protocol: opts.secure ? 'https' : 'http',
             type: type,
             bufferSize: 1000,
             host: opts.zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
@@ -28,8 +28,11 @@ function getOrCreateLogger(type, opts) {
         if (opts.endpoint) {
             config['host'] = opts.endpoint
         }
-
-        logger = logzioLogger.createLogger();
+        console.log('opts: ')
+        console.log(opts)
+        console.log('config:')
+        console.log(config)
+        logger = logzioLogger.createLogger(config);
         loggers[type] = logger;
     }
     return logger;
@@ -104,7 +107,7 @@ function start(opts) {
 function cli() {
     var argv = minimist(process.argv.slice(2), {
         boolean: ['json'],
-        string: ['token'],
+        string: ['token', 'endpoint'],
         alias: {
             'token': 't',
             'newline': 'n',

@@ -31,7 +31,7 @@ The `-a` allows to add more fields to the log - this can be used to tag specific
 
 The `-z` allows controlling to which zone the logs will be sent to eu for Europe us for USA (set to us by default)
 
-The `--endpoint` allows controlling to which logzio endpoint the logs will be sent (will override any zone definition)
+The `-e/--endpoint` allows controlling to which logzio endpoint the logs will be sent (will override any zone definition)
 
 You can also filter the containers for which the logs/stats are
 forwarded with:
@@ -48,6 +48,7 @@ To run the container in such environments add --privileged to the `docker run` c
 Example:
 ```sh
 docker run --privileged -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker -t ***TOKEN*** -a env=prod
+docker run --privileged -d --restart=always -v /var/run/docker.sock:/var/run/docker.sock logzio/logzio-docker --token=***TOKEN*** -a env=prod
 ```
 
 ## How it works
