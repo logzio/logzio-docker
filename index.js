@@ -18,7 +18,7 @@ function getOrCreateLogger(type, opts) {
     if (!logger) {
         config = {
             token: opts.token,
-            protocol: 'https',
+            protocol: opts.secure ? 'https' : 'http'
             type: type,
             bufferSize: 1000,
             host: opts.zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
@@ -120,6 +120,7 @@ function cli() {
             logs: true,
             dockerEvents: true,
             statsinterval: 30,
+            secure: true,
             add: ['host=' + os.hostname()],
             token: process.env.LOGZIO_TOKEN,
             zone: process.env.LOGZIO_ZONE
@@ -127,8 +128,8 @@ function cli() {
     });
 
     if (argv.help || !(argv.token)) {
-        console.log('Usage: docker-logzio [-t TOKEN][-j] [--no-newline]\n' +
-            '                         [--no-stats] [--no-logs] [--endpoint] [--no-dockerEvents]\n' +
+        console.log('Usage: docker-logzio [-t TOKEN] [--endpoint ENDPOINT] [-j] [--no-newline]\n' +
+            '                         [--no-stats] [--no-logs] [--no-secure] [--no-dockerEvents]\n' +
             '                         [-i STATSINTERVAL] [-a KEY=VALUE] [-z us|eu]\n' +
             '                         [--matchByImage REGEXP] [--matchByName REGEXP]\n' +
             '                         [--skipByImage REGEXP] [--skipByName REGEXP]\n' +
