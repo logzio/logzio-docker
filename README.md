@@ -31,6 +31,8 @@ The `-a` allows to add more fields to the log - this can be used to tag specific
 
 The `-z` allows controlling to which zone the logs will be sent to eu for Europe us for USA (set to us by default)
 
+The `--endpoint` allows controlling to which logzio endpoint the logs will be sent (will override any zone definition)
+
 You can also filter the containers for which the logs/stats are
 forwarded with:
 

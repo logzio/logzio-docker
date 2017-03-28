@@ -16,13 +16,20 @@ var loggers = {};
 function getOrCreateLogger(type, opts) {
     var logger = loggers[type];
     if (!logger) {
-        logger = logzioLogger.createLogger({
+        config = {
             token: opts.token,
             protocol: 'https',
             type: type,
             bufferSize: 1000,
             host: opts.zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
-        });
+        }
+
+        // Allow override to a specific logzio endpoint  
+        if (opts.endpoint) {
+            config['host'] = opts.endpoint
+        }
+
+        logger = logzioLogger.createLogger();
         loggers[type] = logger;
     }
     return logger;
@@ -121,7 +128,7 @@ function cli() {
 
     if (argv.help || !(argv.token)) {
         console.log('Usage: docker-logzio [-t TOKEN][-j] [--no-newline]\n' +
-            '                         [--no-stats] [--no-logs] [--no-dockerEvents]\n' +
+            '                         [--no-stats] [--no-logs] [--endpoint] [--no-dockerEvents]\n' +
             '                         [-i STATSINTERVAL] [-a KEY=VALUE] [-z us|eu]\n' +
             '                         [--matchByImage REGEXP] [--matchByName REGEXP]\n' +
             '                         [--skipByImage REGEXP] [--skipByName REGEXP]\n' +
