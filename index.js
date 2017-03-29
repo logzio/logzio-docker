@@ -28,9 +28,7 @@ function getOrCreateLogger(type, opts) {
         if (opts.endpoint) {
             config['host'] = opts.endpoint
         }
-        console.log('opts: ')
-        console.log(opts)
-        console.log('config:')
+        console.log('Starting with config:')
         console.log(config)
         logger = logzioLogger.createLogger(config);
         loggers[type] = logger;
