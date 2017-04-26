@@ -59,8 +59,6 @@ job "logzio" {
         "-a", "env=TEST",
         ]
 
-        dns_servers = ["172.17.0.1"]
-
       }
 
       env {
