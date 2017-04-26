@@ -36,10 +36,15 @@ The `-e/--endpoint` allows controlling to which logzio endpoint the logs will be
 You can also filter the containers for which the logs/stats are
 forwarded with:
 
-* `--matchByName REGEXP`: forward logs/stats only for the containers whose name matches the given REGEXP.
-* `--matchByImage REGEXP`: forward logs/stats only for the containers whose image matches the given REGEXP.
-* `--skipByName REGEXP`: do not forward logs/stats for the containers whose name matches the given REGEXP.
-* `--skipByImage REGEXP`: do not forward logs/stats for the containers whose image matches the given REGEXP.
+* `--matchByName REGEXP`: forward logs/stats only for the containers whose name matches the given REGEXP.`
+* `--matchByImage REGEXP`: forward logs/stats only for the containers whose image matches the given REGEXP.`
+* `--skipByName REGEXP`: do not forward logs/stats for the containers whose name matches the given REGEXP.`
+* `--skipByImage REGEXP`: do not forward logs/stats for the containers whose image matches the given REGEXP.`
+
+You can also set your Logz.io token and zone with the following environment variables:
+
+* `LOGZIO_TOKEN = <token>`
+* `LOGZIO_ZONE = <zone> `
 
 ### Running container in a restricted environment.
 Some environments(such as Google Compute Engine) does not allow to access the docker socket without special privileges. You will get EACCES(`Error: read EACCES`) error if you try to run the container.
