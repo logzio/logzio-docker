@@ -29,7 +29,7 @@ The `-i/--statsinterval <STATSINTERVAL>` downsamples the logs sent to Logz.io. I
 
 The `-a` allows to add more fields to the log - this can be used to tag specific application, environment etc. 
 
-The `-z` allows controlling to which zone the logs will be sent to eu for Europe us for USA (set to us by default)
+The `-z` allows you to specify the Zone of your account, us if your account is located in the USA or eu if your account is located in the EU. (set to us by default)
 
 The `-e/--endpoint` allows controlling to which logzio endpoint the logs will be sent (will override any zone definition)
 
