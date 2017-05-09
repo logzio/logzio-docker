@@ -24,7 +24,7 @@ function getOrCreateLogger(type, opts) {
             host: opts.zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
         }
 
-        // Allow override to a specific logzio endpoint  
+        // Allow override to a specific logzio endpoint
         if (opts.endpoint) {
             config['host'] = opts.endpoint
         }
@@ -43,6 +43,8 @@ function start(opts) {
 
         var type = 'docker-unknown';
         if (obj.line) {
+            obj.message = obj.line
+            delete obj.line
             type = 'docker_logs';
         }
         else if (obj.type) {
