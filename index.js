@@ -9,7 +9,7 @@ var statsFactory = require('docker-stats');
 var logFactory = require('docker-loghose');
 var os = require('os');
 var logzioLogger = require('logzio-nodejs');
-
+var isJSON = require('is-json');
 var eventsFactory = require('./docker-event-log');
 
 var loggers = {};
@@ -45,6 +45,12 @@ function start(opts) {
         if (obj.line) {
             obj.message = obj.line
             delete obj.line
+            if (isJSON(obj.message)) {
+              obj.logzio_codec = 'json';
+            }
+            else {
+              obj.logzio_codec = 'plain';
+            }
             type = 'docker_logs';
         }
         else if (obj.type) {
@@ -106,18 +112,15 @@ function start(opts) {
 
 function cli() {
     var argv = minimist(process.argv.slice(2), {
-        boolean: ['json'],
         string: ['token', 'endpoint'],
         alias: {
             'token': 't',
             'newline': 'n',
-            'json': 'j',
             'statsinterval': 'i',
             'add': 'a',
             'zone': 'z'
         },
         default: {
-            json: false,
             newline: true,
             stats: true,
             logs: true,
@@ -131,7 +134,7 @@ function cli() {
     });
 
     if (argv.help || !(argv.token)) {
-        console.log('Usage: docker-logzio [-t TOKEN] [--endpoint ENDPOINT] [-j] [--no-newline]\n' +
+        console.log('Usage: docker-logzio [-t TOKEN] [--endpoint ENDPOINT]  [--no-newline]\n' +
             '                         [--no-stats] [--no-logs] [--no-secure] [--no-dockerEvents]\n' +
             '                         [-i STATSINTERVAL] [-a KEY=VALUE] [-z us|eu]\n' +
             '                         [--matchByImage REGEXP] [--matchByName REGEXP]\n' +

@@ -5,14 +5,14 @@ if [ `basename $PWD` != "logzio-docker" ]; then
     exit 1
 fi
 
-source VERSION
+VERSION=v2.4
 
-DOCKER_REGISTRY=registry.internal.logz.io:5000
+#DOCKER_REGISTRY=registry.internal.logz.io:5000
 IMAGE_NAME=logzio/logzio-docker
 
 docker build -t $IMAGE_NAME .
-docker tag -f $IMAGE_NAME $DOCKER_REGISTRY/$IMAGE_NAME:$VERSION
-docker tag -f $IMAGE_NAME $DOCKER_REGISTRY/$IMAGE_NAME:latest
+docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
+docker tag $IMAGE_NAME $IMAGE_NAME:latest
 
-docker push $DOCKER_REGISTRY/$IMAGE_NAME:$VERSION
-docker push $DOCKER_REGISTRY/$IMAGE_NAME:latest
+#docker push $DOCKER_REGISTRY/$IMAGE_NAME:$VERSION
+#docker push $DOCKER_REGISTRY/$IMAGE_NAME:latest
