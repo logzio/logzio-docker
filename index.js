@@ -121,13 +121,13 @@ function cli() {
             'zone': 'z'
         },
         default: {
-            newline: true,
-            stats: true,
-            logs: true,
-            dockerEvents: true,
-            statsinterval: 30,
-            secure: true,
-            add: ['host=' + os.hostname()],
+            newline: (process.env.LOGZIO_NEWLINE === undefined) ? true : (process.env.LOGZIO_NEWLINE.toLowerCase() === 'true'),
+            stats: (process.env.LOGZIO_STATS === undefined) ? true : (process.env.LOGZIO_STATS.toLowerCase() === 'true'),
+            logs: (process.env.LOGZIO_LOGS === undefined) ? true : (process.env.LOGZIO_LOGS.toLowerCase() === 'true'),
+            dockerEvents: (process.env.LOGZIO_DOCKER_EVENTS === undefined) ? true : (process.env.LOGZIO_DOCKER_EVENTS.toLowerCase() === 'true'),
+            statsinterval: (process.env.LOGZIO_STATS_INTERVAL === undefined) ? 30 : parseInt(process.env.LOGZIO_STATS_INTERVAL),
+            secure: (process.env.LOGZIO_SECURE === undefined) ? true : (process.env.LOGZIO_SECURE.toLowerCase() === 'true'),
+            add: (process.env.LOGZIO_ADD === undefined) ? ['host=' + os.hostname()] : process.env.LOGZIO_ADD,
             token: process.env.LOGZIO_TOKEN,
             zone: process.env.LOGZIO_ZONE
         }
