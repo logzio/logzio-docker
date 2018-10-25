@@ -46,6 +46,12 @@ You can also set your Logz.io token and zone with the following environment vari
 * `LOGZIO_TOKEN = <token>`
 * `LOGZIO_ZONE = <zone> `
 
+To enrich all log events published to Logz.io with labels that are set on the container use the following options:
+
+* `--addLabels`: toggle to enable 'adding of labels' to each log entry.
+* `--labelsKey <field>`: Place all label fields under this key. ie: `--labelsKey labels` would result in labels.mydockerlabel as a fieldname in Logz.io. By default the labels will be placed directly at the root of the object.
+* `--labelsMatch REGEXP`: Only add labels if the label name matches the given REGEXP.
+
 ### Running container in a restricted environment.
 Some environments(such as Google Compute Engine) does not allow to access the docker socket without special privileges. You will get EACCES(`Error: read EACCES`) error if you try to run the container.
 To run the container in such environments add --privileged to the `docker run` command.

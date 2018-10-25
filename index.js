@@ -140,6 +140,7 @@ function cli() {
             '                         [-i STATSINTERVAL] [-a KEY=VALUE] [-z us|eu]\n' +
             '                         [--matchByImage REGEXP] [--matchByName REGEXP]\n' +
             '                         [--skipByImage REGEXP] [--skipByName REGEXP]\n' +
+            '                         [--addLabels] [--labelsKey keyname] [--labelsMatch REGEXP]' +
             '                         [--help]');
 
         process.exit(1);
