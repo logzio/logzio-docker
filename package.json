@@ -20,7 +20,7 @@
     "dockerode": "2.4.3",
     "minimist": "1.2.0",
     "through2": "2.0.3",
-    "logzio-nodejs": "1.5.0",
+    "logzio-nodejs": "1.0.3",
     "is-json": "2.0.1"
   }
 }
