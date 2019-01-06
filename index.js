@@ -21,7 +21,7 @@ function getOrCreateLogger(type, opts) {
             protocol: opts.secure ? 'https' : 'http',
             type: type,
             bufferSize: 1000,
-            host: opts.zone === 'eu' ? 'listener-eu.logz.io' : '' // US is the default value
+            host: opts.zone === 'eu' ? 'listener-eu.logz.io' : 'listener.logz.io'
         }
 
         // Allow override to a specific logzio endpoint

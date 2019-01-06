@@ -1,6 +1,6 @@
 {
   "name": "logzio-docker",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Forward all logs from all running docker containers to Logz.io",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "dockerode": "2.4.3",
     "minimist": "1.2.0",
     "through2": "2.0.3",
-    "logzio-nodejs": "0.4.2",
+    "logzio-nodejs": "1.0.3",
     "is-json": "2.0.1"
   }
 }
