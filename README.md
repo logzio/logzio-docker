@@ -1,3 +1,14 @@
+### This project has been replaced
+
+Please note that logzio-docker is deprecated.
+You can continue to use this project in existing implementations—but we encourage you to migrate your Docker log and metrics shipping to these new open source projects from Logz.io:
+
+- [docker-collector-logs](https://github.com/logzio/docker-collector-logs)
+- [docker-collector-metrics](https://github.com/logzio/docker-collector-metrics)
+
+Happy shipping! <br />
+The Support and Integrations teams
+
 # logzio-docker
 
 Forward all your Docker logs to [Logz.io](http://logz.io)
